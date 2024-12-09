@@ -1,0 +1,22 @@
+Pour demarrer laravel avec vite pour eviter de recharger la page a chaque modification il faut:
+-- <title>{{env('APP_NAME')}}</title> 
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+  -npm install et apres npm run dev
+
+  <!-- Pour mettre en place les classes actives dans le menu  -->
+
+  <li>
+<a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}"> Accueil</a>
+
+<!--  -->
+
+<a href="{{ route('home') }}" class="{{ request()->routeIs('home/*') ? 'active' : '' }}"> Accueil</a>
+  </li>
+
+  <!--  -->
+  public function update(Request $request, $id){
+    $c
+  }
+
