@@ -1,0 +1,6 @@
+Pour demarrer laravel avec vite pour eviter de recharger la page a chaque modification il faut:
+
+-- <title>{{env('APP_NAME')}}</title> 
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+  -npm install et apres npm run dev
