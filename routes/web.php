@@ -27,3 +27,8 @@ route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/form', function () {
     return view('form');
 });
+
+Route::get('/threejs', function () {
+    return view('threejs');
+});
+

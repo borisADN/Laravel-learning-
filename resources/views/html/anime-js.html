@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Boule qui suit la souris avec Anime.js</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+
+    .ball {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #3498db;
+      position: absolute;
+      pointer-events: none;  /* Empêche l'interaction de la souris */
+      transition: all 0.1s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ball"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Sélectionner l'élément boule
+    const ball = document.querySelector('.ball');
+
+    // Variables pour suivre la position de la souris
+    let mouseX = 0, mouseY = 0;
+    let ballX = 0, ballY = 0;
+
+    // Lors du mouvement de la souris, on met à jour les positions
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Animation de la boule pour qu'elle suive la souris en douceur
+    function animateBall() {
+      // Animation fluide avec anime.js
+      anime({
+        targets: ball,
+        left: mouseX - ball.offsetWidth / 2,  // Position X
+        top: mouseY - ball.offsetHeight / 2,  // Position Y
+        scale: 1.5,                          // Agrandir la boule
+        opacity: 0.7,                        // Légère transparence
+        duration: 500,
+        easing: 'easeOutQuad'
+      });
+
+      // Recurse pour maintenir l'animation continue
+      requestAnimationFrame(animateBall);
+    }
+
+    // Lancer l'animation de la boule
+    animateBall();
+  </script>
+
+</body>
+</html>

@@ -9,7 +9,7 @@
 <body>
     <form action="" >
         <fieldset >
-            <legend>Form </legend>
+            <legend>Form</legend>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required> <br>
 
