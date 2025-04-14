@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bouton 3D avec GSAP</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .button-3d {
+      width: 220px;
+      height: 90px;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5);
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .button-3d:hover {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <button class="button-3d">Survole-moi</button>
+
+  <script>
+    const button = document.querySelector('.button-3d');
+
+    button.addEventListener('mousemove', (e) => {
+      const bounds = button.getBoundingClientRect();
+      const x = e.clientX - bounds.left;
+      const y = e.clientY - bounds.top;
+      const centerX = bounds.width / 2;
+      const centerY = bounds.height / 2;
+
+      const rotateX = -(y - centerY) / 4;  // effet plus fort
+      const rotateY = (x - centerX) / 4;
+
+      gsap.to(button, {
+        duration: 0.2,
+        rotateX: rotateX,
+        rotateY: rotateY,
+        scale: 1.07,
+        transformPerspective: 800,
+        transformOrigin: 'center',
+        ease: 'power2.out'
+      });
+    });
+
+    button.addEventListener('mouseleave', () => {
+      gsap.to(button, {
+        duration: 0.6,
+        rotateX: 0,
+        rotateY: 0,
+        scale: 1,
+        ease: 'power3.out'
+      });
+    });
+  </script>
+
+</body>
+</html>
